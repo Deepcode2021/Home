@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Home</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background-color: rgb(200, 224, 255);
+    }
+
+    .scene {
+      perspective: 800px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      position: relative;
+      width: 200px; /* Width of the container */
+      height: 200px; /* Height of the container */
+    }
+
+    .house {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .roof {
+      position: absolute;
+      top: -100px; /* Adjusted from 0px to make the roof visible */
+      left: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 100px solid #d9534f;
+    }
+
+    .front-wall {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #5bc0de;
+      opacity: 0.7;
+      transform-style: preserve-3d;
+    }
+
+    .door {
+      position: absolute;
+      bottom: 0;
+      left: 80px;
+      width: 40px;
+      height: 80px;
+      background-color: #8A6D3B;
+    }
+
+    .window {
+      position: absolute;
+      top: 40px;
+      left: 50px;
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+    }
+
+    .garden {
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background-color: #2ecc71;
+    }
+
+    .title {
+      position: absolute;
+      bottom: -90px; /* Adjusted from 0px to position below the house */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150%;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      font-size: 26px;
+      text-align: center;
+    }
+    .titlem {
+      position: absolute;
+      bottom: -150px; /* Adjusted from 0px to position below the house */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250%;
+      font-weight: 800;
+      font-family: Arial, sans-serif;
+      font-size: 26px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" id="scene">
+    <div class="container">
+      <div class="house" id="house">
+        <div class="roof"></div>
+        <div class="front-wall"></div>
+        <div class="door"></div>
+        <div class="window"></div>
+        <div class="garden"></div>
+        <div class="title">W E L C O M E</div>
+        <div class="titlem">RAJESH VISHWAKARMA</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var scene = document.getElementById('scene');
+    var house = document.getElementById('house');
+
+    scene.addEventListener('mousemove', function(event) {
+      var boundingRect = scene.getBoundingClientRect();
+      var mouseX = event.clientX - boundingRect.left;
+      var mouseY = event.clientY - boundingRect.top;
+
+      var rotationY = (mouseX - boundingRect.width / 2) / 20;
+      var rotationX = (boundingRect.height / 2 - mouseY) / 20;
+
+      house.style.transform = 'rotateY(' + rotationY + 'deg) rotateX(' + rotationX + 'deg)';
+    });
+  </script>
+</body>
+</html>
